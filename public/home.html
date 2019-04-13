@@ -5,10 +5,13 @@
             <p class="page font-weight-bolder">Home page</p>
         </div>
         <div class="formContainer">
-            <img src="./image/undraw_profile_pic_ic5t(2).png" alt="">
-                <button class="formstyle form--button mb-4" ui-sref="login" >Login</button> 
-            <p class="formContainer--register">Not registered?</p>
-            <button class="formstyle form--button--secondary " ui-sref="register">Register</button> <br>
-
-        </div>
+            <img src="./image/undraw_profile_pic_ic5t(1).png" alt="">
+            <form name="loginform" ng-submit="callLogin()" novalidate>
+                <input class="formstyle" type="text" placeholder="Enter city" ng-model="city" name="city" pattern="[a-zA-Z0-9.-_]{3,}" required> <br>
+                <span ng-show="loginform.email.$touched && loginform.email.$invalid && loginform.email.$error['required']" class="error">City address can't be empty!</span>
+                <span ng-show="loginform.email.$touched && loginform.email.$invalid && loginform.email.$error['pattern']" class="error">City address has invalid format</span>
+                
+                <button class="formstyle form--button" type="submit">Search</button> <br>
+            </form>
+            <p class="formContainer--register">Find weather for city?</div>
     </div>

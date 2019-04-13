@@ -47,6 +47,7 @@ app.get('/weather', (req, res) => {
 				if (error) return errorHandler(error);
 
 				res.send({
+                    success :true,
 					location: `${street} ${adminArea5}, ${adminArea3} ${postalCode}`.trim(),
 					summary,
 					temperature,
