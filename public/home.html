@@ -38,7 +38,7 @@
                 <div class="card" ng-repeat="(key, value) in weatherData.weatherData.weatherArray" >
                     <img src="http://openweathermap.org/img/w/{{value.icon}}.png" class="card-img-top" alt="">
                     <div class="card-body">
-                        <h5 class="card-title">{{weatherData.weatherData.days[key]}}</h5>
+                        <h5 class="card-title">{{value.date}}</h5>
                         <p> <b>Weather:</b> {{value.description}}</p>
                         <p class="card-text"><b>Temperature:</b> {{value.temperature}} C</p>
                         <p class="card-text"><b>Humidity:</b> {{value.humidity}}%</p>
@@ -46,5 +46,10 @@
                     </div>
                 </div>
             </div>
+            <h2 class="text-center mt-2">Temperature Chart</h2>
+            <canvas id="line" class="chart chart-line text-center my-4" chart-data="data"
+                chart-labels="labels" chart-series="series" chart-options="options" chart-colors="colors"
+                chart-dataset-override="datasetOverride" chart-click="onClick">
+            </canvas>
         </div>
     </div>

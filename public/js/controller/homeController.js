@@ -11,16 +11,36 @@ app.controller("homeCtrl", function($scope, $location, authFactory) {
     $scope.login = () => {
         let promise = authFactory.getWeather($scope.city, $scope.password);
         promise.then(data => {
-            console.log(data);
             if(data.data.success){
-                console.log(data.data);
                 $scope.weatherData = data.data;
-                swal ( "Success" ,  "Yay and password...", )
+                $scope.data = data.data.weatherData.weatherArray.map(element => element.temperature)
+                $scope.labels = data.data.weatherData.weatherArray.map(element => element.date)
+                swal ( "Success" ,  "Weather Data received ..", )
             }
             else
                 swal ( "Oops" ,  "Somthing went wrong..Pls try again with valid city and password...", "error")
         }, err => {
             swal ( "Oops" ,  "Somthing went wrong..Pls try again with valid city and password..." ,  "error" )
         });
+    };
+
+    $scope.labels = [];
+    $scope.data = [];
+    $scope.colors= ["rgb(159,204,0)","rgb(250,109,33)","rgb(154,154,154)"];
+    $scope.onClick = function (points, evt) {
+    //   console.log(points, evt);
+    };
+    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
+    $scope.options = {
+      scales: {
+        yAxes: [
+          {
+            id: 'y-axis-1',
+            type: 'linear',
+            display: true,
+            position: 'left'
+          }
+        ]
+      }
     };
 });
