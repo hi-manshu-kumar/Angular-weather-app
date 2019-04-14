@@ -3,6 +3,7 @@ const express      = require('express');
 const path         = require('path');
 const morgan       = require('morgan');
 const cors         = require('cors');
+const favicon      = require('serve-favicon');
 
 // ROUTES
 const routes = require('./routes/index');
@@ -19,6 +20,7 @@ app.use(express.urlencoded({
 
 app.use(cors());
 app.use(morgan('dev'));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // static file config
 app.use(express.static(path.join(__dirname, 'public')));
@@ -33,7 +35,7 @@ app.use('/', routes);
 // @desc Takes location data from user Fetches the weather data from open weather api 
 app.get('/weather', (req, res) => {
 	const errorHandler = error => {
-		res.send({ error });
+		res.status(400).send({ error });
 	};
 
 	if (!req.query.location) return errorHandler({ message: 'No location provided' });

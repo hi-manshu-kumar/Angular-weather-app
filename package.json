@@ -12,13 +12,12 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/hi-manshu-kumar/Angular-weather-app/issues"
   },
   "homepage": "https://github.com/hi-manshu-kumar/Angular-weather-app#readme",
   "dependencies": {
-    "angular-chart.js": "^1.1.1",
     "axios": "^0.18.0",
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",

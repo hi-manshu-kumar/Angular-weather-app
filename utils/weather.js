@@ -11,30 +11,28 @@ const weather = (lat, lng, callback) => {
 		.then(response => {
 			const {data} = response;
 			weatherJson = data;
-console.log(weatherJson.list.length);
 			var weatherArray = [];
 			for(var i = 2; i < weatherJson.list.length; i+=7)
 			{	
 
 			  var loopObject = {
-			  temperature: Math.round(weatherJson.list[i].main.temp - 273.15), //Sets the values taken from the API query
-			  description: weatherJson.list[i].weather[0].main,
-			  pressure: weatherJson.list[i].main.pressure,
-			  humidity: weatherJson.list[i].main.humidity,
-				icon: weatherJson.list[i].weather[0].icon,
-				date: dates.dayOfWeek(new Date(weatherJson.list[i].dt_txt).getDay())
+					temperature: Math.round(weatherJson.list[i].main.temp - 273.15),             //Sets the values taken from the API query
+					description: weatherJson.list[i].weather[0].main,
+					pressure   : weatherJson.list[i].main.pressure,
+					humidity   : weatherJson.list[i].main.humidity,
+					icon       : weatherJson.list[i].weather[0].icon,
+					date       : dates.dayOfWeek(new Date(weatherJson.list[i].dt_txt).getDay())
 				}
 				
 			  weatherArray.push(loopObject);
-				console.log(weatherArray)
 			}
 
 			var weather = { //Gets accurate current weather
 				temperature: Math.round(weatherJson.list[0].main.temp - 273.15),
-				pressure: weatherJson.list[0].main.pressure,
-			  humidity: weatherJson.list[0].main.humidity,
-			  description: weatherJson.list[0].weather[0].main,
-			  icon: weatherJson.list[0].weather[0].icon
+				pressure   : weatherJson.list[0].main.pressure,
+				humidity   : weatherJson.list[0].main.humidity,
+				description: weatherJson.list[0].weather[0].main,
+				icon       : weatherJson.list[0].weather[0].icon
 			};
 	  
 			var weatherData = {weather: weather, weatherArray: weatherArray}; //Prepares data for ejs file.
