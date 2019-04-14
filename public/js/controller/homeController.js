@@ -12,10 +12,11 @@ app.controller("homeCtrl", function($scope, $location, authFactory) {
         let promise = authFactory.getWeather($scope.city, $scope.password);
         promise.then(data => {
             console.log(data);
-            if(data.data.success)
-                // $location.path("/community");
+            if(data.data.success){
+                console.log(data.data);
+                $scope.weatherData = data.data;
                 swal ( "Success" ,  "Yay and password...", )
-
+            }
             else
                 swal ( "Oops" ,  "Somthing went wrong..Pls try again with valid city and password...", "error")
         }, err => {

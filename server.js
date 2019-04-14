@@ -43,7 +43,7 @@ app.get('/weather', (req, res) => {
 		(error, { lat, lng, street, adminArea5, adminArea3, postalCode } = {}) => {
 			if (error) return errorHandler(error);
 
-			weather(lat, lng, (error, { summary, temperature, apparentTemperature } = {}) => {
+			weather(lat, lng, (error, { summary, temperature, apparentTemperature,weatherData } = {}) => {
 				if (error) return errorHandler(error);
 
 				res.send({
@@ -51,7 +51,8 @@ app.get('/weather', (req, res) => {
 					location: `${street} ${adminArea5}, ${adminArea3} ${postalCode}`.trim(),
 					summary,
 					temperature,
-					apparentTemperature
+					apparentTemperature,
+					weatherData
 				});
 			});
 		}
